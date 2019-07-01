@@ -1,14 +1,17 @@
 class Artist
-    
+    @@all = Set.new
     attr_accessor :name
     attr_reader :songs
 
     def initialize(name)
         @name = name
         @songs = []
+        @@all << self
         
     end
-
+    def self.all
+        @@all
+    end
     def add_song(song_instance)
         @songs << song_instance
         song_instance.artist = self

@@ -1,13 +1,24 @@
 class Post
+    @@all = Set.new
     attr_accessor :title, :author
-    @@count = Set.new
-    def initialize(name)
-        @name = name
-        @@count << self
+    def initialize(title)
+        @author = author
+        @title = title
+        @@all << self
     end
     def self.all
-        @@count
+        @@all
+    end
 
+    def author_name
+        Author.all.select do |author|
+             if author == self.author
+               return author.name
+             elsif self.author == nil
+                return nil
+            end
+         end
+    end
 
 
 end

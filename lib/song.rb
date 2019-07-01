@@ -1,11 +1,24 @@
 class Song
+    
+    @@all = Set.new
     attr_accessor :artist, :name
-    @@count = Set.new
     def initialize(name)
-        @name=name
-        @@count << self
+        @name = name
+        @artist = artist
+        @@all << self
     end
-def self.all
-    @@count
+
+def artist_name
+    Artist.all.select do |artist|
+        if artist == self.artist
+            return artist.name
+        elsif self.artist == nil
+            return nil
+        end
+    end
 end
+def self.all
+    @@all
+end
+
 end
